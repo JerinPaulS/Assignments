@@ -1,0 +1,67 @@
+
+  GETTING STARTED WITH THE UMLtoCSP Tool
+
+  This document is still in a very early stage and covers only the most basic
+  information needed to get the tool running. If you encounter problems,
+  please don't hesitate to report them (See "Contact" at the end of this 
+  document).
+
+  Prerequisites
+  -------------
+
+  To get the toolkit running, you need:
+  1. Java SDK, version 1.5 (prior versions won't work).
+  2. Make sure that your system's environment variable $JAVA_HOME is set 
+     properly and "tools.jar" is located at $JAVA_HOME/lib/tools.jar
+  3. Make sure that you use the libraries provided with the tool (or newer versions). 
+    
+  Note that this tool uses the Dresden OCL Toolkit to parse the UML model and 
+  the OCL constraints. All dresden libs needed to run the tool are also included 
+  in this zip file. However, to obtain the latest version you can download and 
+  compile the Dresden OCL Toolkit (http://dresden-ocl.sourceforge.net) and copy 
+  the libs into the "libs/external" directory.
+  
+  If you want to create and load your own models, I recommend using the XMI export 
+  in ArgoUML or Gentleware's "Poseidon for UML 3.0" (there is a free community edition). If you
+  use Poseidon for UML 4.0 you must first process the exported XMI file with the XSLT provided at 
+  http://fheidenreich.de/xmitool/ 
+
+  Make sure your model's XMI file does not containe diagram data (untag the 
+  corresponding option when saving XMI file).
+
+
+  Conventions
+  -----------
+
+  In this document, the variable $BASE refers to the directory where you
+  unpacked the zip file into. E. g. if you unpacked the toolkit
+  into /home/UMLtoCSP, then $BASE would have the value "/home/UMLtoCSP".
+
+
+  Running the tool on Windows
+  ---------------------------
+
+   There is a script in $BASE/UMLtoCSP.bat
+
+   To run the tool, change working directory to $BASE and type:
+
+        UMLtoCSP.bat
+
+
+  Running the tool on Unix
+  ------------------------
+
+   There is a script in $BASE/UMLtoCSP.sh
+
+   To run the tool, change working directory to $BASE and type:
+
+        ./UMLtoCSP.sh
+
+  
+   Contact
+   -------
+
+   Report problems,bugs,questions... with the tool to Jordi Cabot (jcabot@uoc.edu), Robert Claris� 
+   (rclariso@uoc.edu) or Daniel Riera (drierat@uoc.edu).
+   
+     

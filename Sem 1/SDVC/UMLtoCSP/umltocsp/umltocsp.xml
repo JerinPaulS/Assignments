@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>UMLtoCSP options</comment>
+<entry key="dot.directory">/opt/eclipse_clp/lib</entry>
+<entry key="umltocsp.lastpath">/home/jerinpaul/Documents/ME/Sem 1/SDVC/UMLtoCSP/umltocsp/examples</entry>
+<entry key="eclipse.directory">/opt/eclipse_clp</entry>
+<entry key="umltocsp.language">en</entry>
+</properties>

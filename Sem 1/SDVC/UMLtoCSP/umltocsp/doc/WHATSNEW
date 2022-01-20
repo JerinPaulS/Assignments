@@ -1,0 +1,24 @@
+2007/05/16
+- Interface: Improved selection of correctness properties, including constraint subsumption and 
+non-contradiction.
+- OCL library: Added support for accessing attributes defined in a superclass.
+- Bug fixes: Corrected a bug that affected roles with multiplicity "*".
+
+2007/07/07
+- Added an XML configuration file.
+- Changes to the ECLiPSe library to improve the efficiency of the verification.
+
+2007/09/10
+- Added the interface with GraphViz.
+- Added the visualization of object diagrams (solution is no longer a text output).
+
+2007/10/20
+- Changes to improve integration with the Dresden OCL toolkit.
+- Interface: Improved the information shown when loading the model (tree view of classes, attributes 
+and associations).
+- Interface: Improved the selection of the limits of the search.
+- Interface: Reduced the verification flow (Load -> Verify).
+
+2007/10/30
+- Minor bug fixes.
+- Interface: added a save button for object diagrams and the generated CSP.

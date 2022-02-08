@@ -11,8 +11,6 @@ from sklearn import metrics
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import roc_curve
-from sklearn.metrics import auc
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 
@@ -70,7 +68,6 @@ for name, alg in models:
     temp.append(round(metrics.accuracy_score(y_test, predicted), 4))
     result.append(temp)
 
-print("Algorithm \t Traning \t Testing \t Precision \t Recall \t Accuracy")
+print("\nAlgorithm \t Traning \t Testing \t Precision \t Recall \t Accuracy")
 for nm, a, b, c, d, e in result:
     print(nm + "\t\t " + str(a) + "\t\t " + str(b) + "\t\t " + str(c) + "\t\t " + str(d) + "\t\t " + str(e))
-'''

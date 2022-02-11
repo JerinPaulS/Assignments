@@ -11,6 +11,7 @@ from sklearn.metrics import recall_score
 from sklearn import metrics
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 
 data = pd.read_csv("/home/jerinpaul/Documents/ME/Sem 1/Data Mining/diabetes_data_upload.csv")
 
@@ -31,6 +32,10 @@ random_states = list(range(0, 200, 4))
 random_statesrev = list(range(200, 0, -4))
 #print(len(train_sizes), len(random_states), len(random_statesrev))
 
+print(df.corr(method = 'pearson'))
+sns.heatmap(df.corr(method = 'pearson'), annot = True)
+plt.show()
+
 models = []
 models.append(('DT', DecisionTreeClassifier()))
 models.append(('LR', LogisticRegression()))
@@ -40,6 +45,7 @@ models.append(('NB', GaussianNB()))
 
 xaxis, yaxis = [[], [], []], [[], [], []]
 result = []
+print(len(data))
 for index, tz in enumerate(train_sizes):
 
     y = df["class"]

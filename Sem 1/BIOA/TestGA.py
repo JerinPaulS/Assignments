@@ -1,5 +1,6 @@
 import math
 import random
+import matplotlib.pyplot as plt
 
 teams = ["Arsenal", "Aston Villa", "Blackburn", "Chelsea", "Everton", "Liverpool", "Machester Utd", "Manchester City", "Southampton", "Tottenham"]
 
@@ -78,6 +79,23 @@ ROUTES = {("London", "Aston"): 12200,
             ("East Manchester", "Southampton"): 12540,
             ("East Manchester", "North London"): 11120,
             ("Southampton", "North London"): 18270}
+T_BM1 = {"Arsenal": random.randint(-35, 35), "Aston Villa": random.randint(-35, 35), "Blackburn": random.randint(-35, 35), "Chelsea": random.randint(-35, 35), "Everton": random.randint(-35, 35), "Liverpool": random.randint(-35, 35), "Machester Utd": random.randint(-35, 35), "Manchester City": random.randint(-35, 35), "Southampton": random.randint(-35, 35), "Tottenham": random.randint(-35, 35)}
+H_BM1 = {"Hilton": random.randint(-35, 35), "Holiday Inn": random.randint(-35, 35),"Blackburn Hotel": random.randint(-35, 35), "Millennium & Copthorne":random.randint(-35, 35), "Dixie Dean": random.randint(-35, 35), "Hope Street": random.randint(-35, 35), "Hyatt": random.randint(-35, 35), "Emirates Palace": random.randint(-35, 35), "Jury's Inn": random.randint(-35, 35), "Myddelton Lodge": random.randint(-35, 35)}
+D_BM1 = {"Sunday": random.randint(-35, 35), "Monday": random.randint(-35, 35), "Tuesday": random.randint(-35, 35), "Wednesday": random.randint(-35, 35), "Thursday": random.randint(-35, 35), "Friday": random.randint(-35, 35), "Saturday": random.randint(-35, 35)}
+C_BM1 = {"London": random.randint(-35, 35), "Aston": random.randint(-35, 35), "Leamington": random.randint(-35, 35), "Fulham": random.randint(-35, 35), "Walton": random.randint(-35, 35), "Merseyside": random.randint(-35, 35), "Old Trafford": random.randint(-35, 35), "East Manchester": random.randint(-35, 35), "Southampton": random.randint(-35, 35), "North London": random.randint(-35, 35)}
+S_BM1 = {"Emirates Stadium": random.randint(-35, 35), "Villa Park": random.randint(-35, 35), "Ewood Park": random.randint(-35, 35), "Stamford Bridge": random.randint(-35, 35), "Goodison Park": random.randint(-35, 35), "Anfield": random.randint(-35, 35), "Old Trafford": random.randint(-35, 35), "Etihad Stadium": random.randint(-35, 35), "St Mary's": random.randint(-35, 35), "Tottenham Hotspur": random.randint(-35, 35)}
+
+T_BM2 = {"Arsenal": random.randint(-100, 100), "Aston Villa": random.randint(-100, 100), "Blackburn": random.randint(-100, 100), "Chelsea": random.randint(-100, 100), "Everton": random.randint(-100, 100), "Liverpool": random.randint(-100, 100), "Machester Utd": random.randint(-100, 100), "Manchester City": random.randint(-100, 100), "Southampton": random.randint(-100, 100), "Tottenham": random.randint(-100, 100)}
+H_BM2 = {"Hilton": random.randint(-100, 100), "Holiday Inn": random.randint(-100, 100),"Blackburn Hotel": random.randint(-100, 100), "Millennium & Copthorne": random.randint(-100, 100), "Dixie Dean": random.randint(-100, 100), "Hope Street": random.randint(-100, 100), "Hyatt": random.randint(-100, 100), "Emirates Palace": random.randint(-100, 100), "Jury's Inn": random.randint(-100, 100), "Myddelton Lodge": random.randint(-100, 100)}
+D_BM2 = {"Sunday": random.randint(-100, 100), "Monday": random.randint(-100, 100), "Tuesday": random.randint(-100, 100), "Wednesday": random.randint(-100, 100), "Thursday": random.randint(-100, 100), "Friday": random.randint(-100, 100), "Saturday": random.randint(-100, 100)}
+C_BM2 = {"London": random.randint(-100, 100), "Aston": random.randint(-100, 100), "Leamington": random.randint(-100, 100), "Fulham": random.randint(-100, 100), "Walton": random.randint(-100, 100), "Merseyside": random.randint(-100, 100), "Old Trafford": random.randint(-100, 100), "East Manchester": random.randint(-100, 100), "Southampton": random.randint(-100, 100), "North London": random.randint(-100, 100)}
+S_BM2 = {"Emirates Stadium": random.randint(-100, 100), "Villa Park": random.randint(-100, 100), "Ewood Park": random.randint(-100, 100), "Stamford Bridge": random.randint(-100, 100), "Goodison Park": random.randint(-100, 100), "Anfield": random.randint(-100, 100), "Old Trafford": random.randint(-100, 100), "Etihad Stadium": random.randint(-100, 100), "St Mary's": random.randint(-100, 100), "Tottenham Hotspur": random.randint(-100, 100)}
+
+T_BM3 = {"Arsenal": random.randint(-200, 200), "Aston Villa": random.randint(-200, 200), "Blackburn": random.randint(-200, 200), "Chelsea": random.randint(-200, 200), "Everton": random.randint(-200, 200), "Liverpool": random.randint(-200, 200), "Machester Utd": random.randint(-200, 200), "Manchester City": random.randint(-200, 200), "Southampton": random.randint(-200, 200), "Tottenham": random.randint(-200, 200)}
+H_BM3 = {"Hilton": random.randint(-200, 200), "Holiday Inn": random.randint(-200, 200),"Blackburn Hotel": random.randint(-200, 200), "Millennium & Copthorne": random.randint(-200, 200), "Dixie Dean": random.randint(-200, 200), "Hope Street": random.randint(-200, 200), "Hyatt": random.randint(-200, 200), "Emirates Palace": random.randint(-200, 200), "Jury's Inn": random.randint(-200, 200), "Myddelton Lodge": random.randint(-200, 200)}
+D_BM3 = {"Sunday": random.randint(-200, 200), "Monday": random.randint(-200, 200), "Tuesday": random.randint(-200, 200), "Wednesday": random.randint(-200, 200), "Thursday": random.randint(-200, 200), "Friday": random.randint(-200, 200), "Saturday": random.randint(-200, 200)}
+C_BM3 = {"London": random.randint(-200, 200), "Aston": random.randint(-200, 200), "Leamington": random.randint(-200, 200), "Fulham": random.randint(-200, 200), "Walton": random.randint(-200, 200), "Merseyside": random.randint(-200, 200), "Old Trafford": random.randint(-200, 200), "East Manchester": random.randint(-200, 200), "Southampton": random.randint(-200, 200), "North London": random.randint(-200, 200)}
+S_BM3 = {"Emirates Stadium": random.randint(-200, 200), "Villa Park": random.randint(-200, 200), "Ewood Park": random.randint(-200, 200), "Stamford Bridge": random.randint(-200, 200), "Goodison Park": random.randint(-200, 200), "Anfield": random.randint(-200, 200), "Old Trafford": random.randint(-200, 200), "Etihad Stadium": random.randint(-200, 200), "St Mary's": random.randint(-200, 200), "Tottenham Hotspur": random.randint(-200, 200)}
 
 
 def generate_first_solution():
@@ -213,15 +231,127 @@ def select_pop(data, fit, POP_SIZE):
     temp.append(fit)
     return temp
 
+def benchmarkFunc1(row):
+    #Ackley 1 Function
+    firstSum = 0.0
+    secondSum = 0.0
+    for index, gene in enumerate(row):
+        #match = team1, team2, stadium, city, day
+        if index == 0:
+            c = T_BM1[gene]
+        elif index == 1:
+            c = T_BM1[gene]
+        elif index == 2:
+            c = S_BM1[gene]
+        elif index ==3:
+            c = C_BM1[gene]
+        else:
+            c = D_BM1[gene]
+        firstSum += c ** 2.0
+        secondSum += math.cos(2.0 * math.pi * c)
+    n = float(len(row))
+    return -20.0 * math.exp(-0.2 * math.sqrt(firstSum / n)) - math.exp(secondSum / n) + 20 + math.e
+
+def benchmarkFunc2(row):
+    #Chung Reynolds Function
+    firstSum = 0.0
+    for index, gene in enumerate(row):
+        #match = team1, team2, stadium, city, day
+        if index == 0:
+            c = T_BM2[gene]
+        elif index == 1:
+            c = T_BM2[gene]
+        elif index == 2:
+            c = S_BM2[gene]
+        elif index ==3:
+            c = C_BM2[gene]
+        else:
+            c = D_BM2[gene]
+        firstSum += c ** 2.0
+    return firstSum ** 2
+
+def benchmarkFunc3(row):
+    #Schumer Steiglitz Function
+    firstSum = 0.0
+    for index, gene in enumerate(row):
+        #match = team1, team2, stadium, city, day
+        if index == 0:
+            c = T_BM2[gene]
+        elif index == 1:
+            c = T_BM2[gene]
+        elif index == 2:
+            c = S_BM2[gene]
+        elif index ==3:
+            c = C_BM2[gene]
+        else:
+            c = D_BM2[gene]
+        firstSum = c ** 4
+    return firstSum
+
+def benchmarkFunc4(row):
+    #Zigzag Function
+    firstSum = 0.0
+    for index, gene in enumerate(row):
+        #match = team1, team2, stadium, city, day
+        if index == 0:
+            c = T_BM3[gene]
+        elif index == 1:
+            c = T_BM3[gene]
+        elif index == 2:
+            c = S_BM3[gene]
+        elif index ==3:
+            c = C_BM3[gene]
+        else:
+            c = D_BM3[gene]
+        lamb = random.uniform(0, 1)
+        #k = random.randint(1, 16)
+        k = 16
+        m = random.randint(0, 1)
+        val = (abs(c) / k) - math.floor((abs(c) / k))
+        z = 0
+        if val <= lamb:
+            z = 1 - m + (m / lamb * val)
+        else:
+            z = 1 - m + (m / (1 - lamb) * val)
+
+        firstSum += 3 * 10 ** 9 * abs((c - 40) * (c - 185) * c * (c + 50) * (c + 180)) * z + (10 * math.sin(0.1 * c))
+    return firstSum
+
+def benchmarkFunc5(row):
+    #SSchwefel 2.22 Function
+    firstSum = 0.0
+    secondSum = 0.0
+    for index, gene in enumerate(row):
+        #match = team1, team2, stadium, city, day
+        if index == 0:
+            c = T_BM1[gene]
+        elif index == 1:
+            c = T_BM1[gene]
+        elif index == 2:
+            c = S_BM1[gene]
+        elif index ==3:
+            c = C_BM1[gene]
+        else:
+            c = D_BM1[gene]
+        firstSum += abs(c)
+        secondSum *= abs(c)
+    return firstSum + secondSum
+
 def genetic_algo():
     POP_SIZE = 0
     data, POP_SIZE = generate_first_solution()
     fit = []
+    xaxis = list(range(0, 100))
+    yaxis1 = []
+    yaxis2 = []
+    yaxis3 = []
+    yaxis4 = []
+    yaxis5 = []
     for row in data:
         fit.append(fitness(row))
     print(data[0], 1/fit[0])
     print("\n")
-    for iterations in range(10):
+    for iterations in range(100):
         #print(data)
         tt = data.copy()
         print("\t\t\t***** Iteration Number " + str(iterations) + " *****")
@@ -236,7 +366,24 @@ def genetic_algo():
         print("is data same " + str(data == tt))
         print(data[0], 1/fit[0])
         print("\n")
+        yaxis1.append(benchmarkFunc1(data[0]))
+        yaxis2.append(benchmarkFunc2(data[0]))
+        yaxis3.append(benchmarkFunc3(data[0]))
+        yaxis4.append(benchmarkFunc4(data[0]))
+        yaxis5.append(benchmarkFunc5(data[0]))
     print(data[0], 1/fit[0])
+    figure, axis = plt.subplots(3, 2)
+    axis[0, 0].plot(xaxis, yaxis1)
+    axis[0, 0].set_title("Ackley 1 Function")
+    axis[0, 1].plot(xaxis, yaxis2)
+    axis[0, 1].set_title("Chung Reynolds Function")
+    axis[1, 0].plot(xaxis, yaxis3)
+    axis[1, 0].set_title("Schumer Steiglitz Function")
+    axis[1, 1].plot(xaxis, yaxis4)
+    axis[1, 1].set_title("Zigzag Function")
+    axis[2, 0].plot(xaxis, yaxis5)
+    axis[2, 0].set_title("SSchwefel 2.22 Function")
+    plt.show()
     return
 
 genetic_algo()

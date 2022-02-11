@@ -15,7 +15,7 @@ from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 
 data = pd.read_csv("/home/jerinpaul/Documents/ME/Sem 1/Data Mining/Iris.csv")
-
+'''
 sns.countplot(x = 'class', data = data)
 plt.show()
 
@@ -43,12 +43,12 @@ plt.show()
 print(data.corr(method = 'pearson'))
 sns.heatmap(data.corr(method='pearson'), annot = True)
 plt.show()
-
+'''
 
 array = data.values
 X = array[:,0:4]
 Y = array[:,4]
-x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
+x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.7, random_state=0)
 
 models = []
 models.append(('KNN', KNeighborsClassifier()))
@@ -71,3 +71,5 @@ for name, alg in models:
 print("\nAlgorithm \t Traning \t Testing \t Precision \t Recall \t Accuracy")
 for nm, a, b, c, d, e in result:
     print(nm + "\t\t " + str(a) + "\t\t " + str(b) + "\t\t " + str(c) + "\t\t " + str(d) + "\t\t " + str(e))
+
+print(alg.predict([[4.9, 3.1, 1.5, 0.1]]))

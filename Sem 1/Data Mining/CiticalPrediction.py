@@ -12,6 +12,7 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+from sklearn.metrics import confusion_matrix
 
 data = pd.read_csv("/home/jerinpaul/Documents/ME/Sem 1/Data Mining/diabetes_data_upload.csv")
 
@@ -66,6 +67,8 @@ for index, tz in enumerate(train_sizes):
         temp.append(round(precision_score(y_test, predicted, average = 'micro'), 4))
         temp.append(round(recall_score(y_test, predicted, average = 'micro'), 4))
         temp.append(round(metrics.accuracy_score(y_test, predicted), 4))
+        cm = confusion_matrix(y_test, y_pred_LR)
+        print(cm)
         if tz == 0.7:
             result.append(temp)
 

@@ -16,35 +16,6 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import confusion_matrix
 
 data = pd.read_csv("/home/jerinpaul/Documents/ME/Sem 1/Data Mining/Iris.csv")
-'''
-sns.countplot(x = 'class', data = data)
-plt.show()
-
-sns.scatterplot(x= 'sepallength', y = 'sepalwidth', hue = 'class', data = data)
-plt.legend(bbox_to_anchor = (1, 1), loc = 2)
-plt.show()
-
-sns.scatterplot(x= 'petallength', y = 'petalwidth', hue = 'class', data = data)
-plt.legend(bbox_to_anchor = (1, 1), loc = 2)
-plt.show()
-
-sns.pairplot(data = data, hue='class', height = 2)
-plt.show()
-
-plot = sns.FacetGrid(data, hue="class")
-plot.map(sns.distplot, "sepallength").add_legend()
-plot = sns.FacetGrid(data, hue="class")
-plot.map(sns.distplot, "sepalwidth").add_legend()
-plot = sns.FacetGrid(data, hue="class")
-plot.map(sns.distplot, "petallength").add_legend()
-plot = sns.FacetGrid(data, hue="class")
-plot.map(sns.distplot, "petalwidth").add_legend()
-plt.show()
-
-print(data.corr(method = 'pearson'))
-sns.heatmap(data.corr(method='pearson'), annot = True)
-plt.show()
-'''
 
 array = data.values
 X = array[:,0:4]
@@ -74,5 +45,3 @@ for name, alg in models:
 print("\nAlgorithm \t Traning \t Testing \t Precision \t Recall \t Accuracy")
 for nm, a, b, c, d, e in result:
     print(nm + "\t\t " + str(a) + "\t\t " + str(b) + "\t\t " + str(c) + "\t\t " + str(d) + "\t\t " + str(e))
-
-print(alg.predict([[4.9, 3.1, 1.5, 0.1]]))

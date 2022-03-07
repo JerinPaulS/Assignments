@@ -20,6 +20,9 @@ K = 20
 xaxis = list(range(1, K))
 yaxis = []
 
+res = 0
+finalK = 0
+
 for k in range(1, K):
     temp = []
     alg = KNeighborsClassifier(n_neighbors=k)
@@ -31,14 +34,19 @@ for k in range(1, K):
     temp.append(round(recall_score(y_test, predicted, average='micro'), 4))
     temp.append(round(metrics.accuracy_score(y_test, predicted), 4))
     result.append(temp)
+    if round(metrics.accuracy_score(y_test, predicted), 4) > res:
+        res = round(metrics.accuracy_score(y_test, predicted), 4)
+        finalK = k
     yaxis.append(round(metrics.accuracy_score(y_test, predicted), 4) * 100)
     #cm = confusion_matrix(y_test, predicted)
     #print(cm)
 
-print("\nAlgorithm \t Training \t Testing \t Precision \t Recall \t Accuracy")
+print("\nK Val \t Training \t Testing \t Precision \t Recall \t Accuracy")
 for nm, a, b, c, d, e in result:
     print(nm + "\t\t " + str(a) + "\t\t " + str(b) + "\t\t " + str(c) + "\t\t " + str(d) + "\t\t " + str(e))
 
 plt.title("Accuracy vs K")
 plt.plot(xaxis, yaxis)
 plt.show()
+
+print("The best value of k is = ", finalK, " with accuracy = ", res * 100)

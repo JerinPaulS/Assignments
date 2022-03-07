@@ -1,10 +1,9 @@
 import random
-import collections
 
 board = []
 N = 8
 POP_SIZE = 1000
-ITERATIONS = 100
+ITERATIONS = 1000
 
 def generate_population(POP_SIZE):
 	DATA = []
@@ -68,24 +67,28 @@ def colScore(curr_pop, row, col):
 def diagScore(curr_pop, row, col):
 	posDiag, posDiag1 = 0, 0
 	negDiag, negDiag1 = 0, 0
+
 	r, c = row + 1, col + 1
 	while 0 <= r < N and 0 <= c < N:
 		if (r, c) in curr_pop:
 			posDiag += 1
 		r += 1
 		c += 1
+
 	r, c = row - 1, col - 1
 	while 0 <= r < N and 0 <= c < N:
 		if (r, c) in curr_pop:
 			negDiag += 1
 		r -= 1
 		c -= 1
+
 	r, c = row - 1, col + 1
 	while 0 <= r < N and 0 <= c < N:
 		if (r, c) in curr_pop:
 			posDiag1 += 1
 		r -= 1
 		c += 1
+
 	r, c = row + 1, col - 1
 	while 0 <= r < N and 0 <= c < N:
 		if (r, c) in curr_pop:
@@ -95,13 +98,24 @@ def diagScore(curr_pop, row, col):
 	#print(curr_pop, posDiag + negDiag)
 	return posDiag + negDiag + posDiag1 + negDiag1
 
-def direction(curr_pop, row, col):
+def direction(curr_pop, row, col, vx, vy, r1, r2, w, c1, c2, pbest, gbest):
 	directions = [(1, 1), (0, 1), (1, 0), (0, -1), (-1, 0), (-1, -1), (-1, 1), (1, -1)]
 	for d in directions:
 		new_x, new_y = d[0] + row, d[1] + col
 		if 0 <= new_x < N and 0 <= new_y < N:
-			return (new_x, new_y)
-	return (0, 0)
+			vx = round(((w * vx) + (c1 * r1 * (pbest - new_x)) + (c2 * r2 * (gbest - new_x))), 4)
+			vy = round(((w * vy) + (c1 * r1 * (pbest - new_y)) + (c2 * r2 * (gbest - new_y))), 4)
+			if vx >= 8 or vx < 0:
+				vx = random.randint(0, 7)
+			else:
+				vx = int(vx)
+			if vy >= 8 or vy < 0:
+				vy = random.randint(0, 7)
+			else:
+				vy = int(vy)
+			if 0 <= row + vx < N and 0 <= col + vy < N and (row + vx, col + vy) not in curr_pop:
+				return row + vx, col + vy, vx, vy
+	return row, col, vx, vy
 
 def select_population(population):
 	population.sort(key = lambda x:x[1])
@@ -115,71 +129,54 @@ def select_population(population):
 	return new_data
 
 def PSO():
+	results = []
 	r1, r2 = round(random.uniform(0, 1), 4), round(random.uniform(0, 1), 4)
 	w, c1, c2 = 2, 2, 2
-	pbest, gbest = 10 ** 3, 10 ** 3
 	vx, vy = 1, 1
+	pbest, gbest = 10 ** 3, 10 ** 3
 	DATA = generate_population(1000)
 	global_result, pop_result = None, None
 	iter_count = 0
-	#for i in range(ITERATIONS):
 	i = 0
-	while gbest > 2:
-		if iter_count == 3:
-			break
+	#for i in range(ITERATIONS):
+	while gbest > 1:
 		iter_count += 1
 		population = []
 		print("\n\t *** ITERATION " + str(i + 1) + " ***")
 		pop_result = None
+		old_pop = None
 		for p in DATA:
 			temp = []
 			total = 0
+			old_pop = p
 			#print(len(p))
 			for index, individual in enumerate(p):
 				row, col = individual
 				total += fitness(p, row, col)
-				x, y = direction(p, row, col)
-				vx = round(((w * vx) + (c1 * r1 * (pbest - x)) + (c1 * r1 * (gbest - x))), 4)
-				vy = round(((w * vy) + (c1 * r1 * (pbest - y)) + (c1 * r1 * (gbest - y))), 4)
-				if vx > 8 or vx < 0:
-					vx = random.randint(1, 8)
-				else:
-					vx = int(vx)
-				if vy > 8 or vy < 0:
-					vy = random.randint(1, 8)
-				else:
-					vy = int(vy)
-				if 0 <= row + vx < N and 0 <= col + vy < N and (row + vx, col + vy) not in p:
-					new_x = row + vx
-					new_y = col + vy
-					p[index] = (new_x, new_y)
 			if pbest > total:
 				pbest = total
-				pop_result = p
+				pop_result = old_pop.copy()
+				print(pop_result, pbest)
+				display(pop_result)
+				print("\n")
+			for index, individual in enumerate(p):
+				row, col = individual
+				new_x, new_y, vx, vy = direction(p, row, col, vx, vy, r1, r2, w, c1, c2, pbest, gbest)
+				p[index] = (new_x, new_y)
+				'''
 				t = 0
 				for v in pop_result:
 					t += fitness(pop_result, v[0], v[1])
 				display(pop_result)
 				print("Local", pop_result, pbest, t)
-
+				'''
 			temp.append(p)
 			temp.append(total)
 			population.append(temp)
 		if gbest > pbest:
 			gbest = pbest
 			global_result = pop_result
-			t = 0
-			for v in global_result:
-				t += fitness(global_result, v[0], v[1])
-			display(global_result)
-			print("Global", global_result, t)
-		'''
-		display(global_result)
-		t = 0
-		for v in global_result:
-			t += fitness(global_result, v[0], v[1])
-		print(global_result, t)
-		'''
+			results.append([pop_result, gbest])
 		print("\t\tGBest ", gbest)
 		DATA = select_population(population)
 		i += 1
@@ -187,11 +184,9 @@ def PSO():
 	print("\n\n\tThis is the result\n")
 	display(global_result)
 	print("\t\tGBest ", gbest)
-	t = 0
-	for v in global_result:
-		t += fitness(global_result, v[0], v[1])
-	print(t)
-	#print(iter_count)
+	for res in results:
+		display(res[0])
+		print(res[1], "\n\n")
 	return
 
 PSO()

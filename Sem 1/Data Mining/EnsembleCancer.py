@@ -73,7 +73,7 @@ for index, val in enumerate(Y):
             break
     voted_pred.append(result)
 
-print(round(metrics.accuracy_score(Y, voted_pred), 4))
+print("The accuracy of the ensemble model is = ", round(metrics.accuracy_score(Y, voted_pred), 4))
 
 
 '''

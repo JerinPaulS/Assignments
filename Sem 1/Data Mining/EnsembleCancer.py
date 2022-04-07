@@ -30,9 +30,11 @@ data.replace('?', 0, inplace=True)
 values = data.values
 imputer = SimpleImputer()
 imputedData = imputer.fit_transform(values)
+#print(imputedData)
 
 scaler = MinMaxScaler(feature_range=(0, 1))
 normalizedData = scaler.fit_transform(imputedData)
+#print(normalizedData)
 
 models = []
 models.append(('KNN', KNeighborsClassifier()))
@@ -48,6 +50,8 @@ for model in models:
     sample = sample.to_numpy()
     X = sample[:, 0:9]
     Y = sample[:, 9]
+    #print(X)
+    #print(Y)
     trained_models.append(model[1].fit(X, Y))
 
 
@@ -58,13 +62,15 @@ Y = sample[:, 9]
 
 mapping = []
 voted_pred = []
+predictions = [[], [], [], [], [], []]
 for index, val in enumerate(Y):
     x = X[index]
     temp = collections.defaultdict(int)
-    for trained_model in trained_models:
+    for index, trained_model in enumerate(trained_models):
         predicted = trained_model.predict([x])
         #print(predicted)
         temp[predicted[0]] += 1
+        predictions[index].append(predicted)
     max_pred = max(temp.values())
     result = None
     for key in temp:
@@ -72,7 +78,8 @@ for index, val in enumerate(Y):
             result = key
             break
     voted_pred.append(result)
-
+for index in range(6):
+	print("The accuracy of the model " + str(models[index][0]) + " is " + str(round(metrics.accuracy_score(Y, predictions[index]), 4)))
 print("The accuracy of the ensemble model is = ", round(metrics.accuracy_score(Y, voted_pred), 4))
 
 

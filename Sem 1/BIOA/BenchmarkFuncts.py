@@ -168,7 +168,7 @@ def genetic_algo():
     Functions = {1: "Ackley 1 Function", 2: "Chung Reynolds Function", 3: "Schumer Steiglitz Function", 4: "Zigzag Function", 5: "SSchwefel 2.22 Function"}
     X = list(range(0, ITERATIONS))
     Y = []
-    for i in range(1):
+    for i in range(5):
         fit = []
         if i == 0:
             data = data1
@@ -221,7 +221,6 @@ def genetic_algo():
     figure, axis = plt.subplots(3, 2)
     axis[0, 0].plot(X, Y[0])
     axis[0, 0].set_title("Ackley 1 Function")
-    '''
     axis[0, 1].plot(X, Y[1])
     axis[0, 1].set_title("Chung Reynolds Function")
     axis[1, 0].plot(X, Y[2])
@@ -230,7 +229,6 @@ def genetic_algo():
     axis[1, 1].set_title("Zigzag Function")
     axis[2, 0].plot(X, Y[4])
     axis[2, 0].set_title("SSchwefel 2.22 Function")
-    '''
     plt.show()
     return
 

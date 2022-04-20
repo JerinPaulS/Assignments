@@ -1,3 +1,32 @@
+Machine learning (ML) is the study of computer algorithms that can improve automatically through experience and by the use of data. It is seen as a part of artificial intelligence. Machine learning algorithms build a model based on sample data, known as training data, in order to make predictions or decisions without being explicitly programmed to do so.Machine learning algorithms are used in a wide variety of applications, such as in medicine, email filtering, speech recognition, and computer vision, where it is difficult or unfeasible to develop conventional algorithms to perform the needed tasks.
+
+Applications of machine learning (ML) are Agriculture, Anatomy, Adaptive website, Affective computing, Astronomy, Banking, Bioinformatics, Brain–machine interfaces, Cheminformatics, Citizen science, Climate science, Computer networks, Computer vision, Credit-card fraud detection, Data quality, DNA sequence classification, Economics, Financial market analysis, General game playing, Handwriting recognition, Information retrieval, Insurance, Internet fraud detection, Knowledge graph embedding, Linguistics,
+Machine learning control
+Machine perception
+Machine translation
+Marketing
+Medical diagnosis
+Natural language processing
+Natural language understanding
+Online advertising
+Optimization
+Recommender systems
+Robot locomotion
+Search engines
+Sentiment analysis
+Sequence mining
+Software engineering
+Speech recognition
+Structural health monitoring
+Syntactic pattern recognition
+Telecommunication
+Theorem proving
+Time-series forecasting
+User behavior analytics
+Behaviorism
+
+A subset of machine learning is closely related to computational statistics, which focuses on making predictions using computers; but not all machine learning is statistical learning. The study of mathematical optimization delivers methods, theory and application domains to the field of machine learning. Data mining is a related field of study, focusing on exploratory data analysis through unsupervised learning.Some implementations of machine learning use data and neural networks in a way that mimics the working of a biological brain. In its application across business problems, machine learning is also referred to as predictive analytics.
+
 Learning algorithms work on the basis that strategies, algorithms, and inferences that worked well in the past are likely to continue working well in the future. These inferences can be obvious, such as "since the sun rose every morning for the last 10,000 days, it will probably rise tomorrow morning as well". They can be nuanced, such as "X% of families have geographically separate species with color variants, so there is a Y% chance that undiscovered black swans exist".[9]
 
 Machine learning programs can perform tasks without being explicitly programmed to do so. It involves computers learning from data provided so that they carry out certain tasks. For simple tasks assigned to computers, it is possible to program algorithms telling the machine how to execute all steps required to solve the problem at hand; on the computer's part, no learning is needed. For more advanced tasks, it can be challenging for a human to manually create the needed algorithms. In practice, it can turn out to be more effective to help the machine develop its own algorithm, rather than having human programmers specify every needed step.[10]
@@ -6,7 +35,7 @@ The discipline of machine learning employs various approaches to teach computers
 
 History and relationships to other fields
 See also: Timeline of machine learning
-The term machine learning was coined in 1959 by Arthur Samuel, an American IBMer and pioneer in the field of computer gaming and artificial intelligence.[11][12] Also the synonym self-teaching computers was used in this time period.[13][14] A representative book of the machine learning research during the 1960s was the Nilsson's book on Learning Machines, dealing mostly with machine learning for pattern classification.[15] Interest related to pattern recognition continued into the 1970s, as described by Duda and Hart in 1973.[16] In 1981 a report was given on using teaching strategies so that a neural network learns to recognize 40 characters (26 letters, 10 digits, and 4 special symbols) from a computer terminal.[17]
+The term machine learning was coined in 1959 by Arthur Samuel, an American IBMer and pioneer in the field of computer gaming and artificial intelligence.Also the synonym self-teaching computers was used in this time period. A representative book of the machine learning research during the 1960s was the Nilsson's book on Learning Machines, dealing mostly with machine learning for pattern classification.[15] Interest related to pattern recognition continued into the 1970s, as described by Duda and Hart in 1973.[16] In 1981 a report was given on using teaching strategies so that a neural network learns to recognize 40 characters (26 letters, 10 digits, and 4 special symbols) from a computer terminal.[17]
 
 Tom M. Mitchell provided a widely quoted, more formal definition of the algorithms studied in the machine learning field: "A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P if its performance at tasks in T, as measured by P, improves with experience E."[18] This definition of the tasks in which machine learning is concerned offers a fundamentally operational definition rather than defining the field in cognitive terms. This follows Alan Turing's proposal in his paper "Computing Machinery and Intelligence", in which the question "Can machines think?" is replaced with the question "Can machines do what we (as thinking entities) can do?".[19]
 
@@ -14,9 +43,9 @@ Modern day machine learning has two objectives, one is to classify data based on
 
 Artificial intelligence
 
-Machine learning as subfield of AI[21]
+Machine learning as subfield of Artificail Intelligence (AI)
 
-Part of machine learning as subfield of AI or part of AI as subfield of machine learning[22]
+Part of machine learning as subfield of AI or part of AI as subfield of machine learning (ML)
 As a scientific endeavor, machine learning grew out of the quest for artificial intelligence. In the early days of AI as an academic discipline, some researchers were interested in having machines learn from data. They attempted to approach the problem with various symbolic methods, as well as what was then termed "neural networks"; these were mostly perceptrons and other models that were later found to be reinventions of the generalized linear models of statistics.[23] Probabilistic reasoning was also employed, especially in automated medical diagnosis.[24]: 488 
 
 However, an increasing emphasis on the logical, knowledge-based approach caused a rift between AI and machine learning. Probabilistic systems were plagued by theoretical and practical problems of data acquisition and representation.[24]: 488  By 1980, expert systems had come to dominate AI, and statistics was out of favor.[25] Work on symbolic/knowledge-based learning did continue within AI, leading to inductive logic programming, but the more statistical line of research was now outside the field of AI proper, in pattern recognition and information retrieval.[24]: 708–710, 755  Neural networks research had been abandoned by AI and computer science around the same time. This line, too, was continued outside the AI/CS field, as "connectionism", by researchers from other disciplines including Hopfield, Rumelhart and Hinton. Their main success came in the mid-1980s with the reinvention of backpropagation.[24]: 25 
@@ -25,7 +54,7 @@ Machine learning (ML), reorganized as a separate field, started to flourish in t
 
 The difference between ML and AI is frequently misunderstood. ML learns and predicts based on passive observations, whereas AI implies an agent interacting with the environment to learn and take actions that maximize its chance of successfully achieving its goals.[26]
 
-As of 2020, many sources continue to assert that ML remains a subfield of AI.[27][28][25] Others have the view that not all ML is part of AI, but only an 'intelligent subset' of ML should be considered AI.[4][29][30]
+As of 2020, many sources continue to assert that ML remains a subfield of AI. Others have the view that not all ML is part of AI, but only an 'intelligent subset' of ML should be considered AI.[4][29][30]
 
 Data mining
 Machine learning and data mining often employ the same methods and overlap significantly, but while machine learning focuses on prediction, based on known properties learned from the training data, data mining focuses on the discovery of (previously) unknown properties in the data (this is the analysis step of knowledge discovery in databases). Data mining uses many machine learning methods, but with different goals; on the other hand, machine learning also employs data mining methods as "unsupervised learning" or as a preprocessing step to improve learner accuracy. Much of the confusion between these two research communities (which do often have separate conferences and separate journals, ECML PKDD being a major exception) comes from the basic assumptions they work with: in machine learning, performance is usually evaluated with respect to the ability to reproduce known knowledge, while in knowledge discovery and data mining (KDD) the key task is the discovery of previously unknown knowledge. Evaluated with respect to known knowledge, an uninformed (unsupervised) method will easily be outperformed by other supervised methods, while in a typical KDD task, supervised methods cannot be used due to the unavailability of training data.
@@ -39,7 +68,7 @@ The difference between optimization and machine learning arises from the goal of
 Statistics
 Machine learning and statistics are closely related fields in terms of methods, but distinct in their principal goal: statistics draws population inferences from a sample, while machine learning finds generalizable predictive patterns.[32] According to Michael I. Jordan, the ideas of machine learning, from methodological principles to theoretical tools, have had a long pre-history in statistics.[33] He also suggested the term data science as a placeholder to call the overall field.[33]
 
-Leo Breiman distinguished two statistical modeling paradigms: data model and algorithmic model,[27] wherein "algorithmic model" means more or less the machine learning algorithms like Random forest.
+Leo Breiman distinguished two statistical modeling paradigms: data model and algorithmic model, wherein "algorithmic model" means more or less the machine learning algorithms like Random forest.
 
 Some statisticians have adopted methods from machine learning, leading to a combined field that they call statistical learning.[28]
 
@@ -65,7 +94,7 @@ Main article: Supervised learning
 A support-vector machine is a supervised learning model that divides the data into regions separated by a linear boundary. Here, the linear boundary divides the black circles from the white.
 Supervised learning algorithms build a mathematical model of a set of data that contains both the inputs and the desired outputs.[34] The data is known as training data, and consists of a set of training examples. Each training example has one or more inputs and the desired output, also known as a supervisory signal. In the mathematical model, each training example is represented by an array or vector, sometimes called a feature vector, and the training data is represented by a matrix. Through iterative optimization of an objective function, supervised learning algorithms learn a function that can be used to predict the output associated with new inputs.[35] An optimal function will allow the algorithm to correctly determine the output for inputs that were not a part of the training data. An algorithm that improves the accuracy of its outputs or predictions over time is said to have learned to perform that task.[18]
 
-Types of supervised learning algorithms include active learning, classification and regression.[26] Classification algorithms are used when the outputs are restricted to a limited set of values, and regression algorithms are used when the outputs may have any numerical value within a range. As an example, for a classification algorithm that filters emails, the input would be an incoming email, and the output would be the name of the folder in which to file the email.
+Types of supervised learning algorithms include active learning, classification and regression. Classification algorithms are used when the outputs are restricted to a limited set of values, and regression algorithms are used when the outputs may have any numerical value within a range. As an example, for a classification algorithm that filters emails, the input would be an incoming email, and the output would be the name of the folder in which to file the email.
 
 Similarity learning is an area of supervised machine learning closely related to regression and classification, but the goal is to learn from examples using a similarity function that measures how similar or related two objects are. It has applications in ranking, recommendation systems, visual identity tracking, face verification, and speaker verification.
 
@@ -87,7 +116,7 @@ Main article: Reinforcement learning
 Reinforcement learning is an area of machine learning concerned with how software agents ought to take actions in an environment so as to maximize some notion of cumulative reward. Due to its generality, the field is studied in many other disciplines, such as game theory, control theory, operations research, information theory, simulation-based optimization, multi-agent systems, swarm intelligence, statistics and genetic algorithms. In machine learning, the environment is typically represented as a Markov decision process (MDP). Many reinforcement learning algorithms use dynamic programming techniques.[38] Reinforcement learning algorithms do not assume knowledge of an exact mathematical model of the MDP, and are used when exact models are infeasible. Reinforcement learning algorithms are used in autonomous vehicles or in learning to play a game against a human opponent.
 
 Dimensionality reduction
-Dimensionality reduction is a process of reducing the number of random variables under consideration by obtaining a set of principal variables.[39] In other words, it is a process of reducing the dimension of the feature set, also called "number of features". Most of the dimensionality reduction techniques can be considered as either feature elimination or extraction. One of the popular methods of dimensionality reduction is principal component analysis (PCA). PCA involves changing higher-dimensional data (e.g., 3D) to a smaller space (e.g., 2D). This results in a smaller dimension of data (2D instead of 3D), while keeping all original variables in the model without changing the data.[40] The manifold hypothesis proposes that high-dimensional data sets lie along low-dimensional manifolds, and many dimensionality reduction techniques make this assumption, leading to the area of manifold learning and manifold regularization.
+Dimensionality reduction is a process of reducing the number of random variables under consideration by obtaining a set of principal variables. In other words, it is a process of reducing the dimension of the feature set, also called "number of features". Most of the dimensionality reduction techniques can be considered as either feature elimination or extraction. One of the popular methods of dimensionality reduction is principal component analysis (PCA). PCA involves changing higher-dimensional data (e.g., 3D) to a smaller space (e.g., 2D). This results in a smaller dimension of data (2D instead of 3D), while keeping all original variables in the model without changing the data.[40] The manifold hypothesis proposes that high-dimensional data sets lie along low-dimensional manifolds, and many dimensionality reduction techniques make this assumption, leading to the area of manifold learning and manifold regularization.
 
 Other types
 Other approaches have been developed which don't fit neatly into this three-fold categorisation, and sometimes more than one is used by the same machine learning system. For example topic modeling, meta learning.[41]
@@ -126,7 +155,7 @@ In particular, in the context of abuse and network intrusion detection, the inte
 Three broad categories of anomaly detection techniques exist.[57] Unsupervised anomaly detection techniques detect anomalies in an unlabeled test data set under the assumption that the majority of the instances in the data set are normal, by looking for instances that seem to fit least to the remainder of the data set. Supervised anomaly detection techniques require a data set that has been labeled as "normal" and "abnormal" and involves training a classifier (the key difference to many other statistical classification problems is the inherently unbalanced nature of outlier detection). Semi-supervised anomaly detection techniques construct a model representing normal behavior from a given normal training data set and then test the likelihood of a test instance to be generated by the model.
 
 Robot learning
-Robot learning is inspired by a multitude of machine learning methods, starting from supervised learning, reinforcement learning,[58][59] and finally meta-learning (e.g. MAML).
+Robot learning is inspired by a multitude of machine learning methods, starting from supervised learning, reinforcement learning, and finally meta-learning (e.g. MAML).
 
 Association rules
 Main article: Association rule learning
@@ -190,34 +219,7 @@ Federated learning
 Main article: Federated learning
 Federated learning is an adapted form of distributed artificial intelligence to training machine learning models that decentralizes the training process, allowing for users' privacy to be maintained by not needing to send their data to a centralized server. This also increases efficiency by decentralizing the training process to many devices. For example, Gboard uses federated machine learning to train search query prediction models on users' mobile phones without having to send individual searches back to Google.[74]
 
-Applications
-There are many applications for machine learning, including:
-
-Agriculture
-Anatomy
-Adaptive website
-Affective computing
-Astronomy
-Banking
-Bioinformatics
-Brain–machine interfaces
-Cheminformatics
-Citizen science
-Climate science
-Computer networks
-Computer vision
-Credit-card fraud detection
-Data quality
-DNA sequence classification
-Economics
-Financial market analysis[75]
-General game playing
-Handwriting recognition
-Information retrieval
-Insurance
-Internet fraud detection
-Knowledge graph embedding
-Linguistics
+Applications of machine learning are Agriculture, Anatomy, Adaptive website, Affective computing, Astronomy, Banking, Bioinformatics, Brain–machine interfaces, Cheminformatics, Citizen science, Climate science, Computer networks, Computer vision, Credit-card fraud detection, Data quality, DNA sequence classification, Economics, Financial market analysis, General game playing, Handwriting recognition, Information retrieval, Insurance, Internet fraud detection, Knowledge graph embedding, Linguistics,
 Machine learning control
 Machine perception
 Machine translation

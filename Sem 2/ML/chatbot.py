@@ -7,6 +7,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 #nltk.download('punkt')
 #nltk.download('wordnet')
 
+def warn(*args, **kwargs):
+    pass
+import warnings
+warnings.warn = warn
+
 GREET_INPUTS = ("hello", "hi")
 GREET_RESPONSE = ("hello", "hi")
 
@@ -56,7 +61,7 @@ def start():
     flag = True
     print("Hello, this is your assistant!")
     while flag:
-        user_response = input()
+        user_response = input("User: ")
         user_response = user_response.lower()
         if user_response == "quit":
             flag = False

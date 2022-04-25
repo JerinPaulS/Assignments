@@ -1,5 +1,8 @@
 #from statistics import correlation
-from PIL import Image
+from audioop import mul
+from turtle import clear
+from unittest import result
+from PIL import Image, ImageOps
 from PIL import ImageFilter
 import numpy as np
 
@@ -89,9 +92,42 @@ def histEqual():
     orig_img.show()
     eq_img.show()
 
-
 def correl():
-    pass
+    original = Image.open("/home/jerinpaul/Pictures/download.jpeg")
+    original = ImageOps.grayscale(original)
+    orig = np.array(original)
+    img = []
+    width, height = original.size
+    for row in range(height):
+        temp = []
+        for col in range(width):
+            temp.append(0)
+        img.append(temp)
+
+    for row in range(height - 2):
+        for col in range(width - 2):
+            temp = []
+            temp.append(orig[row][col:col + 3])
+            temp.append(orig[row + 1][col:col + 3])
+            temp.append(orig[row + 2][col:col + 3])
+            res = matmul(temp, [[1, 2, 3], [3, 2, 1], [2, 3, 4]])
+            print(row, col)
+            for i in range(row, row + 3):
+                for j in range(col, col + 3):
+                    img[i][j] = res[i - row][j - col]
+
+    img = np.array(img)
+    img = Image.fromarray(img.astype('uint8'))
+    original.show()
+    img.show()
+
+def matmul(A, B):
+    result = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    for i in range(len(A)):
+        for j in range(len(B[0])):
+            for k in range(len(B)):
+                result[i][j] += A[i][k] * B[k][j]
+    return result
 
 def convo():
     pass
@@ -100,7 +136,57 @@ def smoothFilt():
     pass
 
 def sharpFilt():
-    pass
+    original = Image.open("/home/jerinpaul/Pictures/download.jpeg")
+    imageObject = Image.open("/home/jerinpaul/Pictures/download.jpeg")
+    img = np.array(imageObject)
+    imgR, imgG, imgB = [], [], []
+    bandR, bandG, bandB = [], [], []
+    width, height = original.size
+    for row in range(height):
+        temp = []
+        temp1 = []
+        temp2 = []
+        temp3 = []
+        for col in range(width):
+            temp.append(0)
+            temp1.append(img[row][col][0])
+            temp2.append(img[row][col][1])
+            temp3.append(img[row][col][2])
+        imgR.append(temp)
+        imgG.append(temp)
+        imgB.append(temp)
+        bandR.append(temp1)
+        bandG.append(temp2)
+        bandB.append(temp3)
+
+    for row in range(height - 2):
+        for col in range(width - 2):
+            temp1 = []
+            temp1.append(bandR[row][col:col + 3])
+            temp1.append(bandR[row + 1][col:col + 3])
+            temp1.append(bandR[row + 2][col:col + 3])
+            temp2 = []
+            temp2.append(bandG[row][col:col + 3])
+            temp2.append(bandG[row + 1][col:col + 3])
+            temp2.append(bandG[row + 2][col:col + 3])
+            temp3 = []
+            temp3.append(bandB[row][col:col + 3])
+            temp3.append(bandB[row + 1][col:col + 3])
+            temp3.append(bandB[row + 2][col:col + 3])
+            res1 = matmul(temp1, [[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+            res2 = matmul(temp2, [[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+            res3 = matmul(temp3, [[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+            print(row, col)
+            for i in range(row, row + 3):
+                for j in range(col, col + 3):
+                    imgR[i][j] = res1[i - row][j - col]
+                    imgG[i][j] = res2[i - row][j - col]
+                    imgB[i][j] = res3[i - row][j - col]
+    imgR, imgG, imgB = Image.fromarray(np.array(imgR, dtype=np.uint8)), Image.fromarray(np.array(imgG, dtype=np.uint8)), Image.fromarray(np.array(imgB, dtype=np.uint8))
+    #imgR, imgG, imgB = ImageOps.invert(imgR), ImageOps.invert(imgG), ImageOps.invert(imgB)
+    result = Image.merge("RGB", (imgR, imgG, imgB))
+    original.show()
+    result.show()
 
 def grad():
     pass

@@ -1,5 +1,5 @@
 import struct
-from PIL import Image
+from PIL import Image, ImageOps
 import numpy as np
 
 fn = "/home/jerinpaul/Documents/ME/Sem 2/IP/sample_640×426.bmp"
@@ -40,18 +40,24 @@ print('Reserved: %s' % struct.unpack('I', bmp.read(4)))
 
 def read_rows(path, w, h):
 	image_file = open(path, "rb")
-	image_file.seek(54)
+	image_file.seek(52)
 	rows = []
 	row = []
 	pixel_index = 0
+	RBand, GBand, BBand = [], [], []
+	rchannel, gchannel, bchannel = [], [], []
 
 	while True:
 		if pixel_index == w:
 			pixel_index = 0
 			rows.insert(0, row)
+			RBand.append(rchannel)
+			GBand.append(gchannel)
+			BBand.append(bchannel)
 			#if len(row) != w * 3:
 			#	print("Error!")
 			row = []
+			rchannel, gchannel, bchannel = [], [], []
 		pixel_index += 1
 
 		r_string = image_file.read(1)
@@ -79,27 +85,17 @@ def read_rows(path, w, h):
 		temp.append(g)
 		temp.append(r)
 		row.append(temp)
+		rchannel.append(r)
+		gchannel.append(g)
+		bchannel.append(b)
 
 	image_file.close()
+	return RBand, GBand, BBand
 
-	return rows
-
-def repack_sub_pixels(rows, w, h):
-    print("Repacking pixels...")
-    sub_pixels = []
-    for row in rows:
-        for sub_pixel in row:
-            sub_pixels.append(sub_pixel)
-
-    diff = len(sub_pixels) - w * h * 3
-    print("Packed", len(sub_pixels), "sub-pixels.")
-    if diff != 0:
-        print("Error!")
-    return sub_pixels
-
-rows = read_rows(fn, width, height)
-print(rows)
-data = np.array(rows)
-img = Image.fromarray(data, 'RGB')
+imgR, imgG, imgB = read_rows(fn, width, height)
+imgR, imgG, imgB = Image.fromarray(np.array(imgR[::-1], dtype=np.uint8)), Image.fromarray(np.array(imgG[::-1], dtype=np.uint8)), Image.fromarray(np.array(imgB[::-1], dtype=np.uint8))
+img = Image.merge("RGB", (imgR, imgG, imgB))
+img1 = ImageOps.grayscale(img)
 img.show()
+img1.show()
 #sub_pixels = repack_sub_pixels(rows, width, height)

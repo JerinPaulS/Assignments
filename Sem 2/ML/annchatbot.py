@@ -12,10 +12,11 @@ words=[]
 classes = []
 documents = []
 ignore_words = ['?', '!']
-data_file = open('/home/jerinpaul/Documents/ME/Sem 2/ML/intents.json').read()
+data_file = open('/home/jerinpaul/Documents/ME/Sem 2/ML/intents2.json').read()
 intents = json.loads(data_file)
 
-print(type(data_file), type(intents))
+#print(type(data_file), type(intents))
+#print(intents)
 
 for intent in intents['intents']:
     for pattern in intent['patterns']:
@@ -77,7 +78,7 @@ model.add(Dropout(0.5))
 model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation='softmax'))
-# Compile model. Stochastic gradient descent with Nesterov accelerated gradient gives good results for this model
+# Compile model. Stochastic gradient descent with Nesterov accelerated gradient
 sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 #fitting and saving the model 

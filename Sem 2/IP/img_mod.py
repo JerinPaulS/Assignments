@@ -188,16 +188,23 @@ def sharpFilt():
     original.show()
     result.show()
 
-def grad():
+def low_grad():
     pass
 
-def lap():
+def low_lap():
+    pass
+
+def high_grad():
+    pass
+
+def high_lap():
     pass
 
 def main():
     flag = True
     while flag:
-        print("\n 1. Negative Image\n 2. Contrast Stretching\n 3. Histogram Equalization\n 4. Correlation\n 5. Convolution\n 6. Smoothing Filters\n 7. Sharpening Filters\n 8. Gradient\n 9. Laplacian\n10. Exit\n")
+        #print("\n 1. Negative Image\n 2. Contrast Stretching\n 3. Histogram Equalization\n 4. Correlation\n 5. Convolution\n 6. Smoothing Filters\n 7. Sharpening Filters\n 8. Gradient\n 9. Laplacian\n10. Exit\n")
+        print("\n 1. Negative Image\n 2. Contrast Stretching\n 3. Histogram Equalization\n 4. Correlation\n 5. Low - Gradient\n 6. Low - Laplacian\n 7. High - Gradient\n 8. High - Laplacian\n 9. Exit\n")
         choice = int(input("Your Choice is: "))
         if choice == 1:
             negImg()
@@ -208,15 +215,15 @@ def main():
         elif choice == 4:
             correl()
         elif choice == 5:
-            convo()
+            low_grad()
         elif choice == 6:
-            smoothFilt()
+            low_lap()
         elif choice == 7:
-            sharpFilt()
+            high_grad()
         elif choice == 8:
-            grad()
-        elif choice == 8:
-            lap()
+            high_lap()
+        #elif choice == 9:
+        #    lap()
         else:
             flag = False
 

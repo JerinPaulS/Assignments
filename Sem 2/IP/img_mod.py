@@ -4,7 +4,10 @@ from turtle import clear
 from unittest import result
 from PIL import Image, ImageOps
 from PIL import ImageFilter
+import matplotlib.pyplot as plt
 import numpy as np
+import cv2
+from yaml import MappingNode
 
 def negImg():
     original = Image.open("/home/jerinpaul/Pictures/wolf.jpg")
@@ -188,23 +191,87 @@ def sharpFilt():
     original.show()
     result.show()
 
-def low_grad():
+def lowPass():
+    img = cv2.imread('/home/jerinpaul/Pictures/stones.jpeg', 0)
+    dft = cv2.dft(np.float32(img), flags=cv2.DFT_COMPLEX_OUTPUT)
+    dft_shift = np.fft.fftshift(dft)
+    #magnitude_spectrum = 20 * np.log((cv2.magnitude(dft_shift[:, :, 0], dft_shift[:, :, 1]))+1)
+
+    rows, cols = img.shape
+    center_row, center_col = rows // 2, cols // 2
+    radius = 120
+    center = [center_row, center_col]
+    mask = np.ones((rows, cols, 2), np.uint8)
+    x, y = np.ogrid[:rows, : cols]
+    mask_area = ((x - center[0] ** 2) + (y - center[1]) ** 2) <= radius ** 2
+    mask[mask_area] = 0
+
+    fshift = dft_shift * mask
+    #fshift_mask_mag = 20 * 20 * np.log(cv2.magnitude(fshift[:, :, 0], fshift[:, :, 1]) + 1)
+    f_ishift = np.fft.ifftshift(fshift)
+    img_back = cv2.idft(f_ishift)
+    img_back = cv2.magnitude(img_back[:, :, 0], img_back[:, :, 1])
+
+    fig = plt.figure(figsize=(15,15))
+    ax1 = fig.add_subplot(2, 2, 1)
+    ax1.imshow(img, cmap='gray')
+    ax1.title.set_text("Original Image")
+    ax2 = fig.add_subplot(2, 2, 2)
+    ax2.imshow(img_back, cmap='gray')
+    ax2.title.set_text("Processed Image")
+    plt.show()
+
+def highPass():
+    img = cv2.imread('/home/jerinpaul/Pictures/stones.jpeg', 0)
+    dft = cv2.dft(np.float32(img), flags=cv2.DFT_COMPLEX_OUTPUT)
+    dft_shift = np.fft.fftshift(dft)
+
+    rows, cols = img.shape
+    crow, ccol = int(rows / 2), int(cols / 2)
+    mask = np.zeros((rows, cols, 2), np.uint8)
+    r = 100
+    center = [crow, ccol]
+    x, y = np.ogrid[:rows, :cols]
+    mask_area = (x - center[0]) ** 2 + (y - center[1]) ** 2 <= r*r
+    mask[mask_area] = 1
+    
+    rows, cols = img.shape
+    crow, ccol = int(rows / 2), int(cols / 2)
+    mask = np.zeros((rows, cols, 2), np.uint8)
+    r_out = 80
+    r_in = 10
+    center = [crow, ccol]
+    x, y = np.ogrid[:rows, :cols]
+    mask_area = np.logical_and(((x - center[0]) ** 2 + (y - center[1]) ** 2 >= r_in ** 2),
+                            ((x - center[0]) ** 2 + (y - center[1]) ** 2 <= r_out ** 2))
+    mask[mask_area] = 1
+
+    fshift = dft_shift * mask
+    #fshift_mask_mag = 20 * 20 * np.log(cv2.magnitude(fshift[:, :, 0], fshift[:, :, 1]) + 1)
+    f_ishift = np.fft.ifftshift(fshift)
+    img_back = cv2.idft(f_ishift)
+    img_back = cv2.magnitude(img_back[:, :, 0], img_back[:, :, 1])
+
+    fig = plt.figure(figsize=(15,15))
+    ax1 = fig.add_subplot(2, 2, 1)
+    ax1.imshow(img, cmap='gray')
+    ax1.title.set_text("Original Image")
+    ax2 = fig.add_subplot(2, 2, 2)
+    ax2.imshow(img_back, cmap='gray')
+    ax2.title.set_text("Processed Image")
+    plt.show()
+
+def gaussianFilter():
     pass
 
-def low_lap():
-    pass
-
-def high_grad():
-    pass
-
-def high_lap():
+def laplacianFilter():
     pass
 
 def main():
     flag = True
     while flag:
         #print("\n 1. Negative Image\n 2. Contrast Stretching\n 3. Histogram Equalization\n 4. Correlation\n 5. Convolution\n 6. Smoothing Filters\n 7. Sharpening Filters\n 8. Gradient\n 9. Laplacian\n10. Exit\n")
-        print("\n 1. Negative Image\n 2. Contrast Stretching\n 3. Histogram Equalization\n 4. Correlation\n 5. Low - Gradient\n 6. Low - Laplacian\n 7. High - Gradient\n 8. High - Laplacian\n 9. Exit\n")
+        print("\n 1. Negative Image\n 2. Contrast Stretching\n 3. Histogram Equalization\n 4. Correlation\n 5. Low Pass Filter\n 6. High Pass Filter\n 7. Gaussian Filter\n 8. Laplacian Filter\n 9. Exit\n")
         choice = int(input("Your Choice is: "))
         if choice == 1:
             negImg()
@@ -215,15 +282,13 @@ def main():
         elif choice == 4:
             correl()
         elif choice == 5:
-            low_grad()
+            lowPass()
         elif choice == 6:
-            low_lap()
+            highPass()
         elif choice == 7:
-            high_grad()
+            gaussianFilter()
         elif choice == 8:
-            high_lap()
-        #elif choice == 9:
-        #    lap()
+            laplacianFilter()
         else:
             flag = False
 

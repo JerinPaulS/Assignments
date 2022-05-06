@@ -2,7 +2,7 @@
 from audioop import mul
 from turtle import clear
 from unittest import result
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageFilter
 from PIL import ImageFilter
 import matplotlib.pyplot as plt
 import numpy as np
@@ -191,7 +191,7 @@ def sharpFilt():
     original.show()
     result.show()
 
-def lowPass():
+def highPass():
     img = cv2.imread('/home/jerinpaul/Pictures/stones.jpeg', 0)
     dft = cv2.dft(np.float32(img), flags=cv2.DFT_COMPLEX_OUTPUT)
     dft_shift = np.fft.fftshift(dft)
@@ -221,7 +221,7 @@ def lowPass():
     ax2.title.set_text("Processed Image")
     plt.show()
 
-def highPass():
+def lowPass():
     img = cv2.imread('/home/jerinpaul/Pictures/stones.jpeg', 0)
     dft = cv2.dft(np.float32(img), flags=cv2.DFT_COMPLEX_OUTPUT)
     dft_shift = np.fft.fftshift(dft)
@@ -262,10 +262,34 @@ def highPass():
     plt.show()
 
 def gaussianFilter():
-    pass
+    img = Image.open('/home/jerinpaul/Pictures/stones.jpeg')
+
+    fig = plt.figure(figsize=(10,10))
+    ax1 = fig.add_subplot(2, 2, 1)
+    ax1.imshow(img)
+    ax1.title.set_text("Original Image")
+    ax2 = fig.add_subplot(2, 2, 2)
+    ax2.imshow(img.filter(ImageFilter.GaussianBlur))
+    ax2.title.set_text("Processed Image")
+    plt.show()
 
 def laplacianFilter():
-    pass
+    ddepth = cv2.CV_16S
+    kernel_size = 3
+    
+    img = cv2.imread('/home/jerinpaul/Pictures/stones.jpeg', 1)
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    dst = cv2.Laplacian(img_gray, ddepth, ksize=kernel_size)
+    abs_dst = cv2.convertScaleAbs(dst)
+
+    fig = plt.figure(figsize=(15,15))
+    ax1 = fig.add_subplot(2, 2, 1)
+    ax1.imshow(img, cmap='gray')
+    ax1.title.set_text("Original Image")
+    ax2 = fig.add_subplot(2, 2, 2)
+    ax2.imshow(abs_dst, cmap='gray')
+    ax2.title.set_text("Processed Image")
+    plt.show()
 
 def main():
     flag = True
